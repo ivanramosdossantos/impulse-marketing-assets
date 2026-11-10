@@ -20,6 +20,7 @@ ROOT = pathlib.Path.cwd().resolve()
 ALLOWED_FOLDERS = ("posts/", "videos/", "brand/logos/")
 ALLOWED_HOSTS = (
     "media.canva.com",
+    "raw.githubusercontent.com",
     "storage.googleapis.com",
     "images.unsplash.com",
     "res.cloudinary.com",
