@@ -1,5 +1,8 @@
 name: Importar mídia aprovada
 on:
+  push:
+    paths:
+      - 'requests/*.json'
   workflow_dispatch:
     inputs:
       asset_url:
@@ -25,38 +28,53 @@ concurrency:
 jobs:
   import:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Validar origem e baixar mídia aprovada
+      - name: Importar imagens de solicitações aprovadas
+        if: github.event_name == 'push'
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess, urllib.parse
+          files = sorted(pathlib.Path('requests').glob('*.json'))
+          if not files:
+              raise SystemExit('Nenhuma solicitação encontrada')
+          for file in files:
+              data = json.loads(file.read_text(encoding='utf-8'))
+              url = data['asset_url']
+              # Solicitações são arquivos públicos; recusar query com tokens temporários.
+              if urllib.parse.urlsplit(url).query or urllib.parse.urlsplit(url).fragment:
+                  raise SystemExit(f'Não salve URL assinada em repositório público: {file}')
+              env = os.environ.copy()
+              env.update({
+                  'ASSET_URL': url,
+                  'TARGET_PATH': data['target_path'],
+                  'EXPECTED_SHA256': data.get('expected_sha256', ''),
+              })
+              subprocess.run(['python3', 'scripts/import_asset.py'], env=env, check=True)
+              file.unlink()
+          PY
+      - name: Importar mídia de URL fornecida na execução
+        if: github.event_name == 'workflow_dispatch'
         env:
           ASSET_URL: ${{ inputs.asset_url }}
           TARGET_PATH: ${{ inputs.target_path }}
           EXPECTED_SHA256: ${{ inputs.expected_sha256 }}
         run: python3 scripts/import_asset.py
-      - name: Verificar alteração
-        id: changed
+      - name: Salvar arquivos verificados no GitHub
         run: |
-          if [ -n "$(git status --porcelain --untracked-files=all)" ]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+          if [ -z "$(git status --porcelain --untracked-files=all)" ]; then
+            echo "Nenhuma mudança para salvar."
+            exit 0
           fi
-      - name: Salvar mídia no repositório
-        if: steps.changed.outputs.changed == 'true'
-        env:
-          TARGET_PATH: ${{ inputs.target_path }}
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- "$TARGET_PATH"
-          git commit -m "assets: import approved media"
+          git add -A -- posts videos brand/logos requests
+          git commit -m "assets: import approved marketing media"
           git push
       - name: Resumo
-        env:
-          TARGET_PATH: ${{ inputs.target_path }}
         run: |
-          echo "Mídia importada: $TARGET_PATH" >> "$GITHUB_STEP_SUMMARY"
+          echo "Processamento concluído" >> "$GITHUB_STEP_SUMMARY"
           echo "Commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
