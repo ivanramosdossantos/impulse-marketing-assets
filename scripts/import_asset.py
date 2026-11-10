@@ -81,9 +81,9 @@ def run():
     if not data or len(data) > MAX_BYTES:
         fail("arquivo vazio ou maior que 15 MB")
     signatures = {
-        ".png": data.startswith(b"\\x89PNG\\r\\n\\x1a\\n"),
-        ".jpg": data.startswith(b"\\xff\\xd8\\xff"),
-        ".jpeg": data.startswith(b"\\xff\\xd8\\xff"),
+        ".png": data.startswith(b"\x89PNG\r\n\x1a\n"),
+        ".jpg": data.startswith(b"\xff\xd8\xff"),
+        ".jpeg": data.startswith(b"\xff\xd8\xff"),
         ".webp": data.startswith(b"RIFF") and data[8:12] == b"WEBP",
         ".mp4": len(data) > 12 and data[4:8] == b"ftyp",
     }
