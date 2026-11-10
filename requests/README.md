@@ -15,7 +15,7 @@ O assistente pode criar em `requests/` um arquivo JSON como:
 
 O commit dispara o GitHub Actions, que verifica o arquivo (HTTPS, domínio, formato, tamanho e integridade opcional), salva a mídia e remove o pedido. O assistente deve **consultar o resultado da execução** e a presença do arquivo antes de declarar êxito.
 
-A URL usada nos pedidos públicos **não pode conter tokens de acesso ou parâmetros de assinatura**, pois o JSON faz parte do histórico público do Git. O workflow aceita atualmente origens `media.canva.com`, `storage.googleapis.com`, `images.unsplash.com` e `res.cloudinary.com`.
+A URL usada nos pedidos públicos **não pode conter tokens de acesso ou parâmetros de assinatura**, pois o JSON faz parte do histórico público do Git. O workflow aceita atualmente origens `media.canva.com`, `storage.googleapis.com`, `images.unsplash.com` e `res.cloudinary.com` (além de `raw.githubusercontent.com` para reutilização de mídias do GitHub).
 
 Para URLs temporárias ou com query string, utilize a execução manual do workflow com entradas (workflow_dispatch), sem registrá-las em arquivos versionados. Ainda assim, não use URLs que exponham credenciais privadas.
 
@@ -28,3 +28,7 @@ Até que essa origem esteja integrada, o fluxo **não é completamente autônomo
 ## Identidade visual
 
 Somente imagens revisadas e aprovadas podem ser transferidas. É obrigatório utilizar a marca oficial original, conforme a skill `impulse-social-media`. O ícone SVG não substitui a assinatura completa.
+
+## Teste concluído em 10/11/2026
+
+Uma solicitação criada em `requests/2026-11-10-test-import.json` foi processada automaticamente. O arquivo `posts/2026/11/2026-11-10-regra-mudou.png` foi salvo no GitHub e o pedido foi removido do diretório `requests/` pelo workflow. **Este teste comprovou URL pública → GitHub, não ainda imagem gerada diretamente no ChatGPT → GitHub.**
