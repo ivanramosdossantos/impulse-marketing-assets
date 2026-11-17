@@ -5,6 +5,7 @@
 
 ## Arte
 
+- Canva: arte final original salva com asset ID `MAHbMcXz0Ms`, 1080 × 1350. O Canva não retornou URL HTTPS pública da imagem original; a miniatura de 160 × 200 não deve ser usada para publicação.
 - Versão final com logo oficial aplicada a partir do arquivo original (não desenhada pela IA).
 - Dimensões: 1080 × 1350 px (Instagram 4:5).
 - Arquivos locais: `impulse_17nov_final_logo_oficial.png` e `impulse_17nov_final_logo_oficial.jpg`.
