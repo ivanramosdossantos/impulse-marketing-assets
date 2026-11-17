@@ -1,7 +1,7 @@
 # Campanha — Uma dúvida do cliente. Três pessoas interrompidas.
 
 **Data:** 17/11/2026
-**Status:** arte final revisada, publicação pendente. O arquivo de mídia ainda não foi enviado ao GitHub.
+**Status:** PUBLICADO em 17/11/2026 nas duas redes (retorno `applied` do Supermetrics).
 
 ## Arte
 
@@ -9,7 +9,8 @@
 - Versão final com logo oficial aplicada a partir do arquivo original (não desenhada pela IA).
 - Dimensões: 1080 × 1350 px (Instagram 4:5).
 - Arquivos locais: `impulse_17nov_final_logo_oficial.png` e `impulse_17nov_final_logo_oficial.jpg`.
-- Link público do GitHub: pendente até a efetiva transferência do arquivo.
+- Link público do GitHub: https://raw.githubusercontent.com/ivanramosdossantos/impulse-marketing-assets/main/posts/2026/11/impulse-17-11-uma-duvida-tres-interrupcoes.jpg
+- Transferência realizada via Base64 e GitHub Git Objects API sem upload manual.
 
 ## Instagram
 
@@ -61,6 +62,13 @@ Arte vertical em fundo azul-marinho com o título “Uma dúvida do cliente. Tr�
 - [x] Imagem final 1080 × 1350
 - [x] Logomarca original aplicada em pós-processamento
 - [x] Instagram e LinkedIn com textos distintos
-- [ ] Arquivo enviado ao GitHub
-- [ ] URL pública da mídia validada
-- [ ] Publicação confirmada nas duas redes e links anotados
+- [x] Arquivo enviado ao GitHub automaticamente
+- [x] URL pública da mídia validada pelo Supermetrics
+- [x] Publicação confirmada nas duas redes e links anotados
+
+## Publicações confirmadas
+
+- Instagram: https://www.instagram.com/p/Df2eWw6DZvR/ — media_id `18101322257396381`.
+- LinkedIn: https://www.linkedin.com/feed/update/urn:li:share:7528510357322256384/ — media_id `share-7528510357322256384`.
+
+Status retornado pelo Supermetrics: `applied` em ambas as redes.
