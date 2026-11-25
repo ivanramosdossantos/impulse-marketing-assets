@@ -2,7 +2,7 @@
 
 **Data**: 2026-11-19, 16:00, fuso America/Sao_Paulo
 
-**Estado**: AGENDADO (ainda não publicado)
+**Estado**: PUBLICADO — Instagram e LinkedIn confirmados no Supermetrics em 24/11/2026
 
 **Imagem final**: https://raw.githubusercontent.com/ivanramosdossantos/impulse-marketing-assets/main/posts/2026/11/2026-11-19-duvidas-repetidas.jpg
 
